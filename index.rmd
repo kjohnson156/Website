@@ -1,0 +1,8 @@
+---
+title: "homepage"
+author: "Kathleen Johnson"
+date: "August 15, 2018"
+output: html_document
+---
+
+Hello! Welcome to my awesome website!
