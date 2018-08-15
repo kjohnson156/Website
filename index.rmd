@@ -1,8 +1,10 @@
 ---
-title: "homepage"
+title: "Homepage"
 author: "Kathleen Johnson"
 date: "August 15, 2018"
-output: html_document
+output: 
+  html_document: 
+    theme: cerulean
 ---
 
 Hello! Welcome to my awesome website!
