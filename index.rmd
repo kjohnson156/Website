@@ -7,4 +7,30 @@ output:
     theme: cerulean
 ---
 
-Hello! Welcome to my awesome website!
+```{r}
+library(tidyverse) #dplyr, magrittr, tidyr, ggplot, lubridate, purrr etc. 
+library(rvest)
+library(stringr)
+#library(selectr)
+```
+
+```{r}
+rtxt <- robotstxt::robotstxt("https://www.imdb.com/")
+rtxt$check(paths = c("/","api/"), bot = "*")
+```
+Read all the HTML from that page into an object in R. (this is reading in the html version of the website you are looking at)
+
+```{r}
+ratings <- read_html("https://www.imdb.com/chart/tvmeter?ref_=nv_tvv_mptv")
+```
+
+Find nodes (nodes always start with a . in front). If there is a td means that the information is in a table column and tr means that it is table row.
+
+```{r}
+temporary <- ratings %>% html_nodes(css="table") %>% html_table(header = TRUE)
+```
+
+```{r}
+rating_table <- temporary[[1]]
+```
+
