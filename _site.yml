@@ -1,9 +1,9 @@
 name: "Kathleen Johnson"
 output_dir: "."
 navbar:
-  title: "SWC workshop webpage"
+  title: "Web Scraping"
   left:
-      - text: "Data - Web Scrape Instructions"
+      - text: "Data - Web Scrape Tutorial"
         icon: fa-database
         href: http://example.com
   
