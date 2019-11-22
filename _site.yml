@@ -3,14 +3,11 @@ output_dir: "."
 navbar:
   title: "SWC workshop webpage"
   left:
-      - text: "Schedule"
+      - text: "Data - Web Scrape Instructions"
         icon: fa-database
         href: http://example.com
   
-  right:
-      - text: "Syllabus"
-        icon: fa-info-circle
-        href: syllabus.html
+
   
 output:
   html_document:

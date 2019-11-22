@@ -6,14 +6,14 @@ output:
   html_document: 
     theme: cerulean
 ---
-
+Make sure you load all the packages that you may need to clean-up the data you scrape from the webpage:
 ```{r}
 library(tidyverse) #dplyr, magrittr, tidyr, ggplot, lubridate, purrr etc. 
 library(rvest)
 library(stringr)
 #library(selectr)
 ```
-
+Then you need to see if the website that you are looking at allows you to scrape data from their site. See below for the code and then enter in the webpage into the paranthesis. A result of "TRUE" means that it is ok to scrape from their site. 
 ```{r}
 rtxt <- robotstxt::robotstxt("https://www.imdb.com/")
 rtxt$check(paths = c("/","api/"), bot = "*")
@@ -23,8 +23,11 @@ Read all the HTML from that page into an object in R. (this is reading in the ht
 ```{r}
 ratings <- read_html("https://www.imdb.com/chart/tvmeter?ref_=nv_tvv_mptv")
 ```
+Using the SelectorGadget on the browser (make sure you have installed SelectorGadget) you hover over the data that you want to collect. For example, on the imdb webpage above, if you hover over the IMDb Rating number that has a star next to it, you will see a yellow box and that means you can select just that date. Then in the litte box (what is the term for this) it will give you the node (what that data is labeled so you can pull that data). For the data I just described, the node is called "strong".
 
 Find nodes (nodes always start with a . in front). If there is a td means that the information is in a table column and tr means that it is table row.
+
+I ended up pulling a table of data that included the rating. Put when I pull the initial table, it had it listed as 
 
 ```{r}
 temporary <- ratings %>% html_nodes(css="table") %>% html_table(header = TRUE)
