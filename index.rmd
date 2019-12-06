@@ -55,3 +55,10 @@ rating_table$`Your Rating` <- NULL
 ```
 
 Now I am down to just the two columns (variables) I want. All I need to do to start running my analysis to see if there is a relationship between movie year and rating is to remove the other characters, besides the year, from my first variable (Year).
+
+The pattern we want to extract has the form "(####)". We can extract this pattern using [regular expressions](https://en.wikipedia.org/wiki/Regular_expression), specifically we want to find a series of `{4}` digits (`\d`) in a row. Using `str_extract` to extract this pattern of characters from the string, then converting it into a number. 
+
+```{r}
+rating_table$yr <- str_extract(rating_table$Year, "\\d{4}") %>% as.numeric()
+```
+
