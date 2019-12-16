@@ -349,10 +349,17 @@ $(document).ready(function () {
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="http://example.com">
+  <a href="index.html">
     <span class="fa fa-database"></span>
      
-    Data - Web Scrape Tutorial
+    Introduction
+  </a>
+</li>
+<li>
+  <a href="Web-Scrape-Tutorial.html">
+    <span class="fa fa-database"></span>
+     
+    Web Scrape Tutorial
   </a>
 </li>
       </ul>
@@ -415,6 +422,25 @@ $(document).ready(function () {
 <p>Now I want to get rid of all other columns besides the new “Year” one I just made and the “IMDB Rating” columns</p>
 <div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" title="1">rating_table<span class="op">$</span><span class="st">`</span><span class="dt">Your Rating</span><span class="st">`</span> &lt;-<span class="st"> </span><span class="ot">NULL</span></a></code></pre></div>
 <p>Now I am down to just the two columns (variables) I want. All I need to do to start running my analysis to see if there is a relationship between movie year and rating is to remove the other characters, besides the year, from my first variable (Year).</p>
+<p>The pattern we want to extract has the form “(####)”. We can extract this pattern using <a href="https://en.wikipedia.org/wiki/Regular_expression">regular expressions</a>, specifically we want to find a series of <code>{4}</code> digits (<code>\d</code>) in a row. Using <code>str_extract</code> to extract this pattern of characters from the string, then converting it into a number.</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" title="1">rating_table<span class="op">$</span>yr &lt;-<span class="st"> </span><span class="kw">str_extract</span>(rating_table<span class="op">$</span>Year, <span class="st">&quot;</span><span class="ch">\\</span><span class="st">d{4}&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as.numeric</span>()</a></code></pre></div>
+<p>Now to make some prety pictures…or just pictures.</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" title="1"><span class="kw">summary</span>(rating_table<span class="op">$</span><span class="st">`</span><span class="dt">IMDb Rating</span><span class="st">`</span>)</a></code></pre></div>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA&#39;s 
+##   3.400   7.600   8.100   7.971   8.500   9.500       2</code></pre>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" title="1"><span class="kw">summary</span>(rating_table<span class="op">$</span>yr)</a></code></pre></div>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##    1989    2012    2016    2014    2019    2020</code></pre>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" title="1"><span class="kw">hist</span>(rating_table<span class="op">$</span>yr)</a></code></pre></div>
+<p><img src="Web-Scrape-Tutorial_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" title="1"><span class="kw">hist</span>(rating_table<span class="op">$</span><span class="st">`</span><span class="dt">IMDb Rating</span><span class="st">`</span>)</a></code></pre></div>
+<p><img src="Web-Scrape-Tutorial_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" title="1">x &lt;-<span class="st"> </span>rating_table<span class="op">$</span>yr</a>
+<a class="sourceLine" id="cb28-2" title="2">y &lt;-<span class="st"> </span>rating_table<span class="op">$</span><span class="st">`</span><span class="dt">IMDb Rating</span><span class="st">`</span></a></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" title="1"><span class="kw">plot</span>(x, y)</a></code></pre></div>
+<p><img src="Web-Scrape-Tutorial_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" title="1"><span class="kw">plot</span>(y,x)</a></code></pre></div>
+<p><img src="Web-Scrape-Tutorial_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
 
 
 
