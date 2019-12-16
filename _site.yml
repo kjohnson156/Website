@@ -3,9 +3,12 @@ output_dir: "."
 navbar:
   title: "Web Scraping"
   left:
-      - text: "Data - Web Scrape Tutorial"
+      - text: "Introduction"
         icon: fa-database
-        href: http://example.com
+        href: index.html
+      - text: "Web Scrape Tutorial"
+        icon: fa-database
+        href: Web-Scrape-Tutorial.html
   
 
   
